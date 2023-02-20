@@ -1,7 +1,7 @@
-package com.mucciolo.imperative;
+package com.mucciolo.io.imperative;
 
-import com.mucciolo.common.http.GetAccBalanceHttpRequest;
-import com.mucciolo.common.http.HttpResponse;
+import com.mucciolo.io.common.http.GetAccBalanceHttpRequest;
+import com.mucciolo.io.common.http.HttpResponse;
 
 public final class Example {
   public static void main(final String[] args) {

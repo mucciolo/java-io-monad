@@ -1,7 +1,7 @@
-package com.mucciolo.functional;
+package com.mucciolo.io.functional;
 
-import com.mucciolo.common.http.GetAccBalanceHttpRequest;
-import com.mucciolo.common.http.HttpResponse;
+import com.mucciolo.io.common.http.GetAccBalanceHttpRequest;
+import com.mucciolo.io.common.http.HttpResponse;
 import com.mucciolo.io.IO;
 
 import static java.lang.System.currentTimeMillis;

@@ -1,6 +1,6 @@
 package com.mucciolo.io;
 
-import com.mucciolo.common.eval.Lazy;
+import com.mucciolo.io.common.eval.Lazy;
 
 import java.util.function.Function;
 

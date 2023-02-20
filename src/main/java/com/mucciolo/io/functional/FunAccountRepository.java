@@ -1,4 +1,4 @@
-package com.mucciolo.functional;
+package com.mucciolo.io.functional;
 
 import com.mucciolo.io.IO;
 

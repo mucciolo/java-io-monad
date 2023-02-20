@@ -1,6 +1,6 @@
-package com.mucciolo.law;
+package com.mucciolo.io.properties;
 
-import com.mucciolo.functional.IO;
+import com.mucciolo.io.IO;
 
 import java.util.function.Function;
 

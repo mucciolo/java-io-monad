@@ -1,4 +1,4 @@
-package com.mucciolo.functional;
+package com.mucciolo.io;
 
 import com.mucciolo.common.eval.Lazy;
 
@@ -16,6 +16,10 @@ public class IO<A> {
     return new IO<>(value);
   }
 
+  public A run() {
+    return value.eval();
+  }
+
   // monad constructor (aka unit)
   public static <A> IO<A> pure(final A a) {
     return IO.delay(() -> a);
@@ -26,11 +30,4 @@ public class IO<A> {
     return IO.delay(value.andThen(f).andThen(IO::run));
   }
 
-  public <B> IO<B> map(final Function<A, B> f) {
-    return flatMap(f.andThen(IO::pure));
-  }
-
-  public A run() {
-    return value.eval();
-  }
 }

@@ -3,6 +3,8 @@ package com.mucciolo.imperative;
 import com.mucciolo.common.http.GetAccBalanceHttpRequest;
 import com.mucciolo.common.http.HttpResponse;
 
+import static java.lang.System.currentTimeMillis;
+
 public class Controller {
 
   private final AccountRepository accountRepository;
@@ -17,7 +19,7 @@ public class Controller {
   }
 
   private void log(final GetAccBalanceHttpRequest getAccBalanceHttpRequest) {
-    System.out.println(getAccBalanceHttpRequest);
+    System.out.printf("%tT | INFO | %s\n", currentTimeMillis(), getAccBalanceHttpRequest);
   }
 
   private HttpResponse route(final GetAccBalanceHttpRequest getAccBalanceHttpRequest) {

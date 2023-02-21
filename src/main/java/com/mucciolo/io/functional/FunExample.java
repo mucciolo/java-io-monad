@@ -9,9 +9,9 @@ import java.util.function.Function;
 public final class FunExample {
   public static void main(final String[] args) {
 
-    final Long input = 123L;
     final Function<Long, IO<HttpResponse>> program = declareProgram();
-    final HttpResponse output = program.apply(input).run();
+    final IO<Long> input = IO.pure(123L);
+    final HttpResponse output = input.flatMap(program).run();
 
     System.out.println(output);
 

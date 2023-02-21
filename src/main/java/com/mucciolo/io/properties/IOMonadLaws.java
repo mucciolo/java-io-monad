@@ -26,7 +26,7 @@ public interface IOMonadLaws {
       final IO<A> ma, final Function<A, IO<B>> f, final Function<B, IO<C>> g
   ) {
 
-    final IO<C> fBeforeG = ma.flatMap(f).flatMap(g); // (ma f) g
+    final IO<C> fBeforeG = (ma.flatMap(f)).flatMap(g); // (ma f) g
     final Function<A, IO<C>> fAndThenG = a -> f.apply(a).flatMap(g);  // (f g)
     final IO<C> fTogetherWithG = ma.flatMap(fAndThenG); // ma (f g)
 

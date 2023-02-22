@@ -9,7 +9,7 @@ import java.util.function.Function;
 public final class FunExample {
   public static void main(final String[] args) {
 
-    final Function<Long, IO<HttpResponse>> program = declareProgram();
+    final Function<Long, IO<HttpResponse>> program = buildProgram();
     final IO<Long> input = IO.pure(123L);
     final HttpResponse output = input.flatMap(program).run();
 
@@ -17,7 +17,7 @@ public final class FunExample {
 
   }
 
-  private static Function<Long, IO<HttpResponse>> declareProgram() {
+  private static Function<Long, IO<HttpResponse>> buildProgram() {
 
     final FunAccountRepository accountRepository = new FunAccountRepository();
     final FunController controller = new FunController(accountRepository);

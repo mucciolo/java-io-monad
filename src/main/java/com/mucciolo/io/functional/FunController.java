@@ -28,7 +28,8 @@ public class FunController {
   private IO<HttpResponse> route(final GetAccBalanceHttpRequest getAccBalanceHttpRequest) {
     return accountRepository
         .getBalance(getAccBalanceHttpRequest.accountId())
-        .flatMap(maybeBalance -> IO.pure(
+        .flatMap(maybeBalance ->
+            IO.pure(
                 maybeBalance
                     .map(balance -> new HttpResponse(200, balance.toString()))
                     .orElse(HttpResponse.NOT_FOUND)

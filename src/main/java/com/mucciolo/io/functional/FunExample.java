@@ -22,9 +22,9 @@ public final class FunExample {
     final FunAccountRepository accountRepository = new FunAccountRepository();
     final FunController controller = new FunController(accountRepository);
 
-    return input -> {
-      final IO<GetAccBalanceHttpRequest> request = IO.pure(new GetAccBalanceHttpRequest(input));
-      return request.flatMap(controller::handle);
+    return accId -> {
+      final GetAccBalanceHttpRequest request = new GetAccBalanceHttpRequest(accId);
+      return controller.handle(request);
     };
   }
 }

@@ -30,4 +30,8 @@ public class IO<A> {
     return IO.delay(value.andThen(f).andThen(IO::run));
   }
 
+  public <B> IO<B> map(final Function<A, B> f) {
+    return flatMap(f.andThen(IO::pure));
+  }
+
 }

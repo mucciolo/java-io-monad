@@ -9,22 +9,21 @@ import java.util.function.Function;
 public final class FunExample {
   public static void main(final String[] args) {
 
-    final Function<Long, IO<HttpResponse>> program = buildProgram();
-    final IO<Long> input = IO.pure(123L);
-    final HttpResponse output = input.flatMap(program).run();
+    final IO<Long> accId = IO.pure(123L);
+    final IO<GetAccBalanceHttpRequest> request = accId.map(GetAccBalanceHttpRequest::new);
+    final Function<GetAccBalanceHttpRequest, IO<HttpResponse>> program = buildProgram();
+    final IO<HttpResponse> programAppliedToRequest = request.flatMap(program);
+    final HttpResponse response = programAppliedToRequest.run();
 
-    System.out.println(output);
+    System.out.println(response);
 
   }
 
-  private static Function<Long, IO<HttpResponse>> buildProgram() {
+  private static Function<GetAccBalanceHttpRequest, IO<HttpResponse>> buildProgram() {
 
     final FunAccountRepository accountRepository = new FunAccountRepository();
     final FunController controller = new FunController(accountRepository);
 
-    return accId -> {
-      final GetAccBalanceHttpRequest request = new GetAccBalanceHttpRequest(accId);
-      return controller.handle(request);
-    };
+    return controller::handle; // closure
   }
 }

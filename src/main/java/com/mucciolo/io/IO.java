@@ -6,7 +6,7 @@ import java.util.function.Function;
 
 public class IO<A> {
 
-  private final Lazy<A> value; // 0-ary non-void function e.g. () -> 1
+  private final Lazy<A> value;
 
   private IO(final Lazy<A> value) {
     this.value = value;

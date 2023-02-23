@@ -19,6 +19,7 @@ public class FunController {
   }
 
   private IO<GetAccBalanceHttpRequest> log(final GetAccBalanceHttpRequest getAccBalanceHttpRequest) {
+    // tap
     return IO.delay(() -> {
       System.out.printf("%tT | INFO | %s\n", currentTimeMillis(), getAccBalanceHttpRequest);
       return getAccBalanceHttpRequest;
@@ -28,12 +29,10 @@ public class FunController {
   private IO<HttpResponse> route(final GetAccBalanceHttpRequest getAccBalanceHttpRequest) {
     return accountRepository
         .getBalance(getAccBalanceHttpRequest.accountId())
-        .flatMap(maybeBalance ->
-            IO.pure(
-                maybeBalance
-                    .map(balance -> new HttpResponse(200, balance.toString()))
-                    .orElse(HttpResponse.NOT_FOUND)
-            )
+        .map(maybeBalance ->
+            maybeBalance
+                .map(balance -> new HttpResponse(200, balance.toString()))
+                .orElse(HttpResponse.NOT_FOUND)
         );
   }
 
